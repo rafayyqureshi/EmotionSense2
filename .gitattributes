@@ -1,0 +1,8 @@
+# Track large model files with Git LFS
+*.pt filter=lfs diff=lfs merge=lfs -text
+models/*/vocab.* filter=lfs diff=lfs merge=lfs -text
+models/*/tokenizer.* filter=lfs diff=lfs merge=lfs -text
+models/*/special_tokens_map.json filter=lfs diff=lfs merge=lfs -text
+models/*/merges.txt filter=lfs diff=lfs merge=lfs -text
+data/raw/*.csv filter=lfs diff=lfs merge=lfs -text
+data/processed/*.pt filter=lfs diff=lfs merge=lfs -text 

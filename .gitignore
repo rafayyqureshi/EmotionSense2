@@ -1,0 +1,51 @@
+# Virtual Environment
+venv/
+py310_env/
+env/
+ENV/
+.env
+
+# Python cache files
+__pycache__/
+*.py[cod]
+*$py.class
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Distribution / packaging
+dist/
+build/
+*.egg-info/
+
+# Jupyter Notebook
+.ipynb_checkpoints
+
+# VS Code settings
+.vscode/
+
+# PyCharm settings
+.idea/
+
+# macOS files
+.DS_Store
+
+# Streamlit specific
+.streamlit/
+
+# Large data files and models
+models/*.pt
+models/*/*.json
+models/*/vocab.*
+models/*/tokenizer.*
+models/*/special_tokens_map.json
+models/*/merges.txt
+# Exclude raw data content but keep directory
+data/raw/*
+!data/raw/.gitkeep
+# Exclude processed data content but keep directory
+data/processed/*
+!data/processed/.gitkeep
+# Make sure tokenizer directories are tracked
+!models/bert_tokenizer/.gitkeep
+!models/gpt_tokenizer/.gitkeep 
