@@ -49,6 +49,12 @@ For more training options:
 python setup_and_train.py --help
 ```
 
+You can also train models individually:
+```
+python src/train.py --model bert --num_epochs 2
+python src/train.py --model gpt --num_epochs 2
+```
+
 ## Usage
 
 1. Start the Streamlit app:

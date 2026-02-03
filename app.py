@@ -261,7 +261,7 @@ def show_training_options():
         
         if process.returncode == 0:
             progress_container.success("✅ Training completed successfully!")
-            st.button("Reload App", on_click=lambda: st.experimental_rerun())
+            st.button("Reload App", on_click=st.rerun)
         else:
             progress_container.error("❌ Training failed. Check the output for details.")
 
@@ -574,7 +574,7 @@ def main():
                 
                 if process.returncode == 0:
                     progress_text.success("✅ Training completed successfully!")
-                    st.button("Reload App", on_click=lambda: st.experimental_rerun())
+                    st.button("Reload App", on_click=st.rerun)
                 else:
                     progress_text.error("❌ Training failed. Check the output for details.")
 
