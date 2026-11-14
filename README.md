@@ -1,100 +1,71 @@
-# EmotionSense: Emotion Classification
+# EmotionSense2 — Emotion Classification Research
 
-EmotionSense is a powerful application for classifying emotions in text using advanced NLP models (BERT and GPT). The system detects six basic emotions: sadness, joy, love, anger, fear, and surprise.
+**Streamlit · BERT · GPT · Training & evaluation**
 
-## Features
+A research workspace for comparing text-emotion classifiers, exploring probability distributions and running training workflows.
 
-- **Dual Model Architecture**: Uses both BERT and GPT models for emotion classification
-- **Interactive Web Interface**: Built with Streamlit for easy interaction and visualization
-- **Comparison Functionality**: Compare results between BERT and GPT models
-- **Training Module**: Train models with custom parameters
-- **Visualization**: View emotion probabilities through intuitive charts
+## Project overview
 
-## Setup Instructions
+| Component | Purpose |
+| --- | --- |
+| Streamlit interface | Text input, model selection, comparison and training controls |
+| BERT and GPT classifiers | Model definitions and checkpoint loading |
+| Training pipeline | Data preparation, fine-tuning and saved checkpoints |
+| Evaluation tools | Model comparison and result visualizations |
+| Demo mode | Illustrative interface output when PyTorch is unavailable |
 
-### System Requirements
+The six labels are sadness, joy, love, anger, fear and surprise. Demo probabilities are generated for interface exploration and should not be interpreted as trained-model predictions.
 
-- Python 3.8-3.10 (compatible with PyTorch)
-- 4GB+ RAM recommended
-- Internet connection for downloading pretrained models (first run only)
+## Interface setup
 
-### Installation
+Create and activate a virtual environment, then install the application dependencies:
 
-1. Clone the repository:
-   ```
-   git clone https://github.com/rafayyqureshi/EmotionSense2.git
-   cd EmotionSense2
-   ```
+~~~bash
+python -m pip install -r requirements.txt
+streamlit run app.py
+~~~
 
-2. Create a virtual environment:
-   ```
-   python3.10 -m venv py310_env
-   source py310_env/bin/activate  # On Windows: py310_env\Scripts\activate
-   ```
+The UI requires Streamlit 1.27 or newer for its rerun controls. The dependency file intentionally omits PyTorch; install a compatible PyTorch distribution in the same environment when using model inference or training.
 
-3. Install dependencies:
-   ```
-   pip install -r requirements.txt
-   ```
+Trained checkpoint files and downloaded datasets are not committed. Model mode expects the local checkpoints described below.
 
-### Training Models
+## Training workflow
 
-Run the setup and training script to download data and train both models:
-```
+After installing PyTorch and the project dependencies, download/preprocess the dataset and train both classifiers:
+
+~~~bash
 python setup_and_train.py --num_epochs 2
-```
+~~~
 
-For more training options:
-```
-python setup_and_train.py --help
-```
+To train one classifier after preparing the data:
 
-You can also train models individually:
-```
+~~~bash
 python src/train.py --model bert --num_epochs 2
 python src/train.py --model gpt --num_epochs 2
-```
+~~~
 
-## Usage
+Use --help on the scripts to inspect batch-size, learning-rate and output-directory options. Training downloads model/data assets and requires suitable local compute.
 
-1. Start the Streamlit app:
-   ```
-   streamlit run app.py
-   ```
+## Checkpoints and results
 
-2. Enter text in the input area
+| Path | Purpose |
+| --- | --- |
+| models/bert_emotion_classifier.pt | Local BERT checkpoint |
+| models/gpt_emotion_classifier.pt | Local GPT checkpoint |
+| src/data_processing.py | Data download, exploration and preprocessing |
+| src/train.py | Fine-tuning entry point |
+| src/evaluate.py | Evaluation and model comparison |
+| results/ | Existing experiment figures |
+| notebooks/ | Exploration scripts |
 
-3. Select which model to use (BERT, GPT, or both)
+### Included experiment figure
 
-4. View the emotion classification results and probability distribution
+![Existing BERT training-curve artifact](results/BERT_Emotion_Classifier_training_curves.png)
 
-## Project Structure
+This figure is an artifact included with the repository. The project does not claim independently verified production accuracy.
 
-- `app.py`: Main Streamlit application
-- `setup_and_train.py`: Script for setting up data and training models
-- `src/`: Source code for training and evaluation
-- `models/`: Model definitions and saved model weights
-- `data/`: Directory for datasets
+## Status
 
-## Limitations
+Research prototype. Results depend on the dataset, checkpoints and training configuration. The interface separates demo behavior from model-backed inference.
 
-- Emotion classification is limited to six basic emotions
-- Classification accuracy depends on the quality of the training data
-- May not perform optimally on highly specialized or technical text
-
-## Technical Details
-
-- Built with PyTorch and Hugging Face Transformers
-- BERT model: fine-tuned from bert-base-uncased
-- GPT model: fine-tuned from gpt2
-- Dataset: Emotion dataset with 20,000 labeled examples
-
-## License
-
-MIT License
-
-## Acknowledgments
-
-- Hugging Face for the Transformers library
-- Streamlit for the web application framework
-- The PyTorch team 
+[Software engineering portfolio](https://github.com/rafayyqureshi/rafay-portfolio)
